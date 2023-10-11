@@ -57,7 +57,6 @@
         let lengthOfMergerItems = mergerItems.length;
         let middleIndex = Math.floor(lengthOfMergerItems / 2);
         if (lengthOfMergerItems > 0) {
-            
             mergerItems[middleIndex].remove();
         }
     }
@@ -68,7 +67,6 @@
         newElement.className = "merger";
 		newElement.style.color = "blue";
 
-        
         let container = document.getElementById('target');
         container.insertBefore(newElement, container.firstChild);
     }
