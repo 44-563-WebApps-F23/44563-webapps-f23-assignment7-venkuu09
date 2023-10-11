@@ -2,7 +2,7 @@
 <html> <head> <style>
     .flex-container {
       display: flex;  flex-direction:row;
-      background-color: red;
+      background-color: rgb(114, 178, 183);
   }
 
 .flex-container > div {  /*div children of the flex container*/
@@ -18,7 +18,7 @@
 	  }
 	}
 </style>
-<title>Merger @remove</title></head>
+<title>Merging Directory</title></head>
 <body>
 	<h1>Venkatesh Mudam builds a merger</h1>
 	<br>
@@ -32,11 +32,12 @@
 		</div>
 	
 	<p> Press the button to create an new element of type div and then add it to the container.</p>
-		<button type="button" class="btn btn-success" onclick="makeNewDiv()">Add end</button>
-		<button class="btn btn-primary" onclick="addFront()">Add front</button>
-		<button class="btn btn-primary" onclick="remove()">Remove</button>
+	<div class="container" style="text-align: center;">
+		<button type="button" class="btn btn-primary" onclick="makeNewDiv()">Add end</button>
+		<button type="button" class="btn btn-primary" onclick="addFront()">Add front</button>
+		<button type="button" class="btn btn-primary" onclick="remove()">Remove</button>
 		<!-- <button class="btn btn-primary" onclick="swapElements()">Swap</button> -->
-	
+	</div>	
 	
 </body>
 <script>
@@ -63,9 +64,9 @@
 
     function addFront() {
         let newElement = document.createElement("div");
-        element.innerHTML = document.getElementById("inputText").value;
-        element.className = "merger";
-		element.style.color = "blue";
+        newElement.innerHTML = document.getElementById("inputText").value;
+        newElement.className = "merger";
+		newElement.style.color = "blue";
 
         
         let container = document.getElementById('target');
