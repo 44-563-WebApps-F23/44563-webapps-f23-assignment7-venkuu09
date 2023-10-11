@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>setTimeout use</title>
+  <title>My Speedometer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,31 +13,38 @@
 
   <h2>Venkatesh Mudam speed check</h2><br>
 
-  <div id="target">Your time</div>
-  <div id="counter">Count</div>
+  <b><div id="target" style="color: blue; background-color: rgb(219, 227, 234);">Your time</div><br></b>
+  <b><div id="counter" style="color:rgb(2, 36, 36); background-color: beige;">Count</div><br></b>
 
   <button type="button" class="btb btn-primary" onclick="startTime()">Start Timer</button>
   <button type="button" class="btb btn-primary" onClick="recordTime()">React</button>
 
   
   <script> 
-  let reactTime =undefined;
+  var reactTime =undefined;
   function recordTime()
         {
             reactTime = Date.now();
             console.log("Current time in milli seconds:" +reactTime);
         }
 
-  function buttonPress1() {
-    setTimeout(function(){
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
+  function startTime() { 
+    for (let i = 0; i < 9; i++) {
+        setTimeout ( function () { 
+            document.getElementById("counter").innerHTML = "Count " + i   
+        }, (8 - i) * 1000) 
+    }
 
-  function buttonPress2() {
-    setTimeout(()=>{
-      document.getElementById('target').style.color = "red"
-    }, 3000)
+    setTimeout ( function () {
+        if (reactTime == undefined) {
+            document.getElementById("target").innerHTML = "Too Slow"
+        }
+        else {
+            var endTime = Date.now()
+            let elapsedTime = endTime - reactTime
+            document.getElementById("target").innerHTML = "Time was " + elapsedTime
+        }
+    }, 8000)
   }
   </script>
 

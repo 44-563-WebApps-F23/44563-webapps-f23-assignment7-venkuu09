@@ -29,9 +29,9 @@
     <div id="penalty" style="color:rgb(2, 44, 25); background-color: rgb(84, 189, 191); font-weight: bold; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
         Penalty is zero.
     </div><br>
-    <div style="color:rgb(66, 70, 11); background-color: rgb(202, 199, 240); font-weight: bold; font-family:Verdana, Geneva, Tahoma, sans-serif">
+    <div style="color:rgb(66, 70, 11); background-color: rgb(202, 199, 240); font-weight: bold; font-family:Verdana, Geneva, Tahoma, sans-serif" id="click" class="btn btn-primary" onclick="help()">
         Click for help.
-    </div><br>
+    </div><br><br>
     <div id="help" style="color:rgb(7, 63, 16); background-color: rgb(235, 189, 235); font-weight: bold; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         Help report
     </div><br>
@@ -144,8 +144,8 @@
                 return;
             } 
     
-            let id = ids[position];
-            let imageElement = document.getElementById(id);
+            let img_id = ids[position];
+            let imageElement = document.getElementById(img_id);
     
             if (position === treasureLocation) {
                 imageElement.src = "treasure.jpg";
@@ -161,7 +161,6 @@
     
             checkCount++;
             penalty++;
-            penalty = penalty < 0 ? 0 : penalty;
             document.getElementById("locations").textContent = `Number of locations checked is ${checkCount}.`;
             document.getElementById("penalty").textContent = `Penalty is ${penalty}.`;
     
@@ -171,15 +170,19 @@
         function help() {
             let helpText = "";
     
-            let rowTreasure = Math.floor(treasureLocation / 5);
-            let colTreasure = treasureLocation % 5;
-            let rowLastCheck = Math.floor(lastCheck / 5);
-            let colLastCheck = lastCheck % 5;
-    
-            if (Math.abs(rowTreasure - rowLastCheck) + Math.abs(colTreasure - colLastCheck) === 1) {
+            let row_Treasure = Math.floor(treasureLocation / 5);
+            let col_Treasure = treasureLocation % 5;
+            let row_LastCheck = Math.floor(lastCheck / 5);
+            let col_LastCheck = lastCheck % 5;
+
+            row_Difference = Math.abs(row_Treasure - row_LastCheck);
+            col_Difference = Math.abs(col_Treasure - col_LastCheck);
+
+
+            if ((row_Difference === 1 && col_Difference === 0) || (row_Difference === 0 && col_Difference === 1)) {
                 document.getElementById("help").textContent = "Can smell it";
             } 
-            else if (Math.abs(rowTreasure - rowLastCheck) + Math.abs(colTreasure - colLastCheck) === 2) {
+            else if (row_Difference + col_Difference === 2) {
                 document.getElementById("help").textContent = "Close Matie";   
             } 
             else {
@@ -188,37 +191,12 @@
             }
             penalty += 2;
             document.getElementById("penalty").textContent = `Penalty is ${penalty}.`;
-            document.getElementById("help").textContent = helpText;
+            
         }
-    
+        document.getElementById("help").textContent = helpText;
         // document.getElementById("click-for-help").onclick = help;
-
-        function newGame(){
-        checkCount = 0;
-        penalty = 0;
-        lastCheck = 0;
-        gameOver = false;
-        
-        treasureLocation = Math.floor(Math.random() * 25);
-        do {
-            trapLocation = Math.floor(Math.random() * 25);
-        } while (trapLocation === treasureLocation);
-      
-        document.getElementById("locations").innerHTML = "Number of locations checked is : " + checkCount;
-        document.getElementById("penalty").innerHTML = "Penalty is : " + penalty;
-        document.getElementById("help").innerHTML = "Help report";
-      
-        for (var i = 0; i < 25; i++) {
-            document.getElementById(ids[i]).src = "SecondImage.jpg";
-        }
-    }
+    
     </script>
     
-    <div>
-        <p id="click-for-help" style="cursor: pointer;">Click for help</p>
-    </div>
-    <div id="help">
-        <p></p>
-    </div>
 </body>
 </html>
