@@ -16,6 +16,13 @@
             display: flex;
             justify-content: center;
         }
+
+        body
+        {
+            background-color: #ecf4f5;
+            font-family: Arial, sans-serif;
+            
+        }
     </style>
 </head>
 <body>
@@ -29,15 +36,15 @@
     <div id="penalty" style="color:rgb(2, 44, 25); background-color: rgb(84, 189, 191); font-weight: bold; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
         Penalty is zero.
     </div><br>
-    <div style="color:rgb(66, 70, 11); background-color: rgb(202, 199, 240); font-weight: bold; font-family:Verdana, Geneva, Tahoma, sans-serif" id="click" class="btn btn-primary" onclick="help()">
+    <div style="color:rgb(66, 70, 11); background-color: rgb(202, 199, 240); font-weight: bold; font-family:Verdana, Geneva, Tahoma, sans-serif" id="click" onclick="help()">
         Click for help.
-    </div><br><br>
+    </div><br>
     <div id="help" style="color:rgb(7, 63, 16); background-color: rgb(235, 189, 235); font-weight: bold; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
         Help report
     </div><br>
 
  <!-- Adding treasure of 5*5 -->
- <h4 style="text-align: center;">Hidden of Surprises</h4>
+ <h4 style="text-align: center;">Hidden Surprises</h4>
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
@@ -157,19 +164,23 @@
                 penalty += 4;
             } else {
                 imageElement.src = "pirate.jpg";
+                checkCount++;
+                penalty++;
             }
     
-            checkCount++;
-            penalty++;
-            document.getElementById("locations").textContent = `Number of locations checked is ${checkCount}.`;
-            document.getElementById("penalty").textContent = `Penalty is ${penalty}.`;
-    
+            if(penalty<0)
+                    penalty =0;
+            let locationsElement = document.getElementById("locations");
+            locationsElement.innerHTML="Number of locations checked is "+checkCount;
+                    
+            let penaltyElement = document.getElementById("penalty");
+            penaltyElement.innerHTML= "Penalty is "+penalty;
+                    
             lastCheck = position;
         }
     
         function help() {
-            let helpText = "";
-    
+            let helpText="";
             let row_Treasure = Math.floor(treasureLocation / 5);
             let col_Treasure = treasureLocation % 5;
             let row_LastCheck = Math.floor(lastCheck / 5);
@@ -179,7 +190,7 @@
             col_Difference = Math.abs(col_Treasure - col_LastCheck);
 
 
-            if ((row_Difference === 1 && col_Difference === 0) || (row_Difference === 0 && col_Difference === 1)) {
+            if ((row_Difference ==+1 && col_Difference === 0) || (row_Difference === 0 && col_Difference === 1)) {
                 document.getElementById("help").textContent = "Can smell it";
             } 
             else if (row_Difference + col_Difference === 2) {
@@ -191,10 +202,9 @@
             }
             penalty += 2;
             document.getElementById("penalty").textContent = `Penalty is ${penalty}.`;
-            
+            // document.getElementById("help").textContent = help;
         }
         document.getElementById("help").textContent = helpText;
-        // document.getElementById("click-for-help").onclick = help;
     
     </script>
     

@@ -36,7 +36,7 @@
 		<button type="button" class="btn btn-primary" onclick="makeNewDiv()">Add end</button>
 		<button type="button" class="btn btn-primary" onclick="addFront()">Add front</button>
 		<button type="button" class="btn btn-primary" onclick="remove()">Remove</button>
-		<!-- <button class="btn btn-primary" onclick="swapElements()">Swap</button> -->
+		<button class="btn btn-primary" onclick="swapElements()">Swap</button>
 	</div>	
 	
 </body>
@@ -72,24 +72,24 @@
     }
 
 
-    // function swapElements() {
-    //     let mergerItems = document.getElementsByClassName("merger");
-    //     let length = mergerItems.length;
+    function swapElements() {
+        let mergerItems = document.getElementsByClassName("merger");
+        let length = mergerItems.length;
 
-    //     if (length >= 2) {
-    //         let index1 = Math.floor(Math.random() * length);
-    //         let index2 = Math.floor(Math.random() * length);
-    //         while (index1 === index2) {
-    //             index2 = Math.floor(Math.random() * length);
-    //         }
-    //         let element1 = mergerItems[index1];
-    //         let element2 = mergerItems[index2];
+        if (length >= 2) {
+            let index1 = Math.floor(Math.random() * length);
+            let index2 = Math.floor(Math.random() * length);
+            while (index1 === index2) {
+                index2 = Math.floor(Math.random() * length);
+            }
+            let element1 = mergerItems[index1];
+            let element2 = mergerItems[index2];
 
-    //         let container = document.getElementById('target');
-    //         let nextElementAfterElement2 = element2.nextElementSibling;
-    //         container.insertBefore(element2, element1);
-    //         container.insertBefore(element1, nextElementAfterElement2);
-    //     }
-    // }
+            let container = document.getElementById('target');
+            let nextElementAfterElement2 = element2.nextElementSibling;
+            container.insertBefore(element2, element1);
+            container.insertBefore(element1, nextElementAfterElement2);
+        }
+    }
 </script>
 </html>	
