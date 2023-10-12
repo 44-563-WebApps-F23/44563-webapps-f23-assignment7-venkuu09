@@ -216,15 +216,18 @@
     gameOver = false;
 
     treasureLocation = Math.floor(Math.random() * 25);
+
     do {
         trapLocation = Math.floor(Math.random() * 25);
+
     } while (trapLocation === treasureLocation);
 
-    document.getElementById("locations").textContent = "Number of locations checked is : " + checkCount;
-    document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+    document.getElementById("locations").innerHTML = "Number of locations checked is : " + checkCount;
+    document.getElementById("penalty").innerHTML = "Penalty is : " + penalty;
     document.getElementById("help").textContent = "Help report";
 
-    for (var i = 0; i < 25; i++) {
+    for (var i = 0; i < 25; i++) 
+    {
         document.getElementById(ids[i]).src = "bear.jpg"
     }
 }
