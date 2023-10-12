@@ -43,6 +43,8 @@
         Help report
     </div><br>
 
+    <button id="newGameButton" onclick="newGame()">New Game</button>
+
  <!-- Adding treasure of 5*5 -->
  <h4 style="text-align: center;">Hidden Surprises</h4>
     <div class="container">
@@ -206,6 +208,26 @@
         }
         document.getElementById("help").textContent = helpText;
     
+    //BONUS
+    function newGame() {
+    checkCount = 0;
+    penalty = 0;
+    lastCheck = 0;
+    gameOver = false;
+
+    treasureLocation = Math.floor(Math.random() * 25);
+    do {
+        trapLocation = Math.floor(Math.random() * 25);
+    } while (trapLocation === treasureLocation);
+
+    document.getElementById("locations").textContent = "Number of locations checked is : " + checkCount;
+    document.getElementById("penalty").textContent = "Penalty is : " + penalty;
+    document.getElementById("help").textContent = "Help report";
+
+    for (var i = 0; i < 25; i++) {
+        document.getElementById(ids[i]).src = "bear.jpg"
+    }
+}
     </script>
     
 </body>
